@@ -3,8 +3,9 @@ import sys
 
 import pyatv
 from aiohttp import web
+from pyatv.interface import AppleTV
 
-atv = None
+atv = None  # type: AppleTV
 
 
 async def get_device(loop):
@@ -12,12 +13,14 @@ async def get_device(loop):
     if atv is not None:
         return atv
 
-    atvs = await pyatv.scan(loop, timeout=5)
+    atvs = await pyatv.scan(loop, timeout=5, hosts=['10.20.30.101'])
 
     if not atvs:
         print('No device found', file=sys.stderr)
 
     print('Connecting to {0}'.format(atvs[0].address))
+
+    print(atvs[0])
 
     atv = await pyatv.connect(atvs[0], loop)
     return atv
@@ -29,6 +32,8 @@ async def handle(request):
     await get_device(loop)
     global atv
 
+    response = web.Response(text="ok")
+
     try:
         if command == "play":
             print("play")
@@ -36,11 +41,35 @@ async def handle(request):
         elif command == "pause":
             print("pause")
             await atv.remote_control.pause()
+        elif command == "volume_up":
+            print("volume_up")
+            await atv.remote_control.volume_up()
+        elif command == "volume_down":
+            print("volume_down")
+            await atv.remote_control.volume_down()
+        elif command == "next":
+            print("next")
+            await atv.remote_control.next()
+        elif command == "previous":
+            print("previous")
+            await atv.remote_control.previous()
+        elif command == "home":
+            print("home")
+            await atv.remote_control.home()
+        elif command == "turn_on":
+            print("turn_on")
+            await atv.power.turn_on()
+        elif command == "turn_off":
+            print("turn_off")
+            await atv.power.turn_off()
+        elif command == "playing_title":
+            result_html = await atv.metadata.playing()
+            response = web.Response(text=result_html.title)
     finally:
         # Do not forget to close
         atv.close()
 
-    return web.Response(text="ok")
+    return response
 
 
 LOOP = asyncio.get_event_loop()
