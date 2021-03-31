@@ -3,3 +3,5 @@ services:
   app:
     build: .
     network_mode: host
+    environment:
+      SERVER_PORT: 3333

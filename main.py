@@ -89,4 +89,4 @@ app.add_routes([web.get('/', handle),
                 web.get('/{command}', handle)])
 
 if __name__ == '__main__':
-    web.run_app(app)
+    web.run_app(app, port=os.environ.get("SERVER_PORT", 8080))
