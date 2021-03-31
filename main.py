@@ -58,6 +58,24 @@ async def handle(request):
         elif command == "volume_down":
             print("volume_down")
             await atv.remote_control.volume_down()
+        elif command == "left":
+            print("left")
+            await atv.remote_control.left()
+        elif command == "right":
+            print("right")
+            await atv.remote_control.right()
+        elif command == "up":
+            print("up")
+            await atv.remote_control.up()
+        elif command == "down":
+            print("down")
+            await atv.remote_control.down()
+        elif command == "menu":
+            print("menu")
+            await atv.remote_control.menu()
+        elif command == "top_menu":
+            print("menu")
+            await atv.remote_control.top_menu()
         elif command == "next":
             print("next")
             await atv.remote_control.next()
@@ -67,6 +85,12 @@ async def handle(request):
         elif command == "home":
             print("home")
             await atv.remote_control.home()
+        elif command == "home_hold":
+            print("home_hold")
+            await atv.remote_control.home_hold()
+        elif command == "select":
+            print("select")
+            await atv.remote_control.select()
         elif command == "turn_on":
             print("turn_on")
             await atv.power.turn_on()
