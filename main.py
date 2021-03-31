@@ -1,5 +1,6 @@
 import asyncio
 import sys
+import os
 
 import pyatv
 from aiohttp import web
@@ -13,13 +14,19 @@ async def get_device(loop):
     if atv is not None:
         return atv
 
-    atvs = await pyatv.scan(loop, timeout=5, hosts=['10.20.30.101'])
+    if "ATV_IP" in os.environ:
+        atv_ip = (os.environ['ATV_IP'])
+        print("Using configured IP: " + atv_ip)
+        atvs = await pyatv.scan(loop, timeout=5, hosts=[atv_ip])
+    else:
+        print("Start scan")
+        atvs = await pyatv.scan(loop, timeout=5)
 
     if not atvs:
         print('No device found', file=sys.stderr)
+        return
 
     print('Connecting to {0}'.format(atvs[0].address))
-
     print(atvs[0])
 
     atv = await pyatv.connect(atvs[0], loop)
@@ -31,6 +38,10 @@ async def handle(request):
     loop = asyncio.get_event_loop()
     await get_device(loop)
     global atv
+
+    if atv is None:
+        print("No device to handle the request")
+        return web.Response(text="nok", status=500)
 
     response = web.Response(text="ok")
 
