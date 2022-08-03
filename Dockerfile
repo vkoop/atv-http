@@ -1,4 +1,4 @@
-FROM python:3.10.5
+FROM python:3.11.0b5
 
 RUN  apt-get update && apt-get install -y build-essential libssl-dev libffi-dev python-dev
 
