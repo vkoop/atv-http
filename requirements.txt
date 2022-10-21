@@ -15,4 +15,4 @@ six==1.15.0
 srptools==1.0.1
 typing-extensions==3.7.4.3
 yarl==1.6.3
-zeroconf==0.28.8
+zeroconf==0.39.2
