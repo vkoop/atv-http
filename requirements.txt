@@ -13,6 +13,6 @@ pyatv==0.7.7
 pycparser==2.20
 six==1.15.0
 srptools==1.0.1
-typing-extensions==3.7.4.3
+typing-extensions==4.5.0
 yarl==1.6.3
 zeroconf==0.28.8
