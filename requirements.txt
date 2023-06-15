@@ -15,7 +15,7 @@ mediafile==0.11.0
 miniaudio==1.59
 multidict==6.0.4
 mutagen==1.46.0
-protobuf==4.23.2
+protobuf==4.23.3
 pyatv==0.12.0
 pycparser==2.21
 requests==2.31.0
