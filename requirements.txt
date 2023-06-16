@@ -16,7 +16,7 @@ miniaudio==1.59
 multidict==6.0.4
 mutagen==1.46.0
 protobuf==4.23.2
-pyatv==0.12.0
+pyatv==0.13.0
 pycparser==2.21
 requests==2.31.0
 six==1.16.0
