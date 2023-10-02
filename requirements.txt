@@ -21,6 +21,6 @@ pycparser==2.21
 requests==2.31.0
 six==1.16.0
 srptools==1.0.1
-urllib3==2.0.3
+urllib3==2.0.6
 yarl==1.9.2
 zeroconf==0.64.1
