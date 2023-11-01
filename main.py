@@ -100,6 +100,9 @@ async def handle(request):
         elif command == "playing_title":
             result_html = await atv.metadata.playing()
             response = web.Response(text=result_html.title)
+    except Exception as e:
+        print("Error while handling command: " + str(e))
+        return web.Response(text="nok", status=500)
     finally:
         # Do not forget to close
         atv.close()
