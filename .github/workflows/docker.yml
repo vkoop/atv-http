@@ -7,6 +7,10 @@ on:
     branches:
       - "main"
 
+# concurrency
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
