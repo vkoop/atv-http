@@ -8,7 +8,7 @@ certifi==2023.7.22
 cffi==1.15.1
 chacha20poly1305-reuseable==0.2.5
 charset-normalizer==3.1.0
-cryptography==41.0.5
+cryptography==41.0.6
 frozenlist==1.3.3
 idna==3.4
 ifaddr==0.2.0
