@@ -14,7 +14,7 @@ idna==3.4
 ifaddr==0.2.0
 mediafile==0.11.0
 miniaudio==1.59
-multidict==6.0.4
+multidict==6.0.5
 mutagen==1.46.0
 protobuf==4.24.4
 pyatv==0.14.4
