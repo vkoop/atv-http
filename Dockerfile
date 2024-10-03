@@ -1,15 +1,22 @@
 FROM python:3.12-bookworm
 
-RUN  apt-get update  \
-     && apt-get install -y build-essential libssl-dev libffi-dev \
-     && apt-get clean \
-     && rm -rf /var/lib/apt/lists/*
+# Install dependencies in a single RUN command to reduce layers
+RUN apt-get update && \
+     apt-get install -y --no-install-recommends build-essential libssl-dev libffi-dev && \
+     apt-get clean && \
+     rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /
-RUN pip install -r /requirements.txt
+# Copy requirements and install Python dependencies
+COPY requirements.txt /tmp/
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && \
+     rm /tmp/requirements.txt
 
+# Copy application code
 COPY . /app
 WORKDIR /app
 
+# Expose the application port
 EXPOSE 8080
-CMD python -u ./main.py
+
+# Set the default command to run the application
+CMD ["python", "-u", "./main.py"]
