@@ -1,4 +1,4 @@
-FROM python:3.12-bookworm
+FROM python:3.13-bookworm
 
 # Install dependencies in a single RUN command to reduce layers
 RUN apt-get update && \
